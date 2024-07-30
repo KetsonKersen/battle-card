@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+body {
+    @apply bg-zinc-900
+}
+
+/* FILTER BTN */
+header ul li{
+    padding: 10px;
+    position: relative;
+}
+header ul li.selected::before{
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #dc2626;
+    box-shadow: 0 0 12px 2px #dc2626;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+/* CARD */
+.cards:hover img{
+    transform: scale(110%);
+    transition: .3s linear;
+}
+.select{
+   @apply border-4 border-red-600
+}
+.select img{
+    transition: .3s linear;
+    transform: scale(100%);
+}
+
+/* LOADING ANIMATION */
+.cardLoading{
+    overflow: hidden;
+    position: relative;
+}
+.cardLoading::before{
+    content: '';
+    width: 20px;
+    height: 200%;
+    background-color: rgb(113, 113, 113);
+    filter: blur(40px);
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    transform: rotate(-10deg) translate(-50%, -50%);
+    animation:  loading 1.5s ease-in-out infinite;
+}
+@keyframes loading {
+    0%{
+        left: -100%;
+    }
+    100%{
+        left: 200%;
+    }
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1200px) {
+    header, #count-cards, #grid,#modal{
+        @apply px-6
+    }
+}
+@media screen and (max-width: 1130px) {
+    #grid{
+        @apply grid-cols-4
+    }   
+}
+@media screen and (max-width: 932px) {
+    header h1{
+        display: none;
+    }
+    #grid{
+        @apply grid-cols-3
+    }
+    #content-modal{
+        @apply gap-4
+    }
+    #content-modal div{
+        @apply w-52
+    }
+}
+@media screen and (max-width: 730px) {
+    #header{
+        @apply h-28
+    }
+    #header div{
+        @apply flex-col-reverse justify-center
+    }
+    #main{
+        @apply pt-28
+    }
+    #grid{
+        @apply grid-cols-3 gap-4
+    }
+    #count-cards{
+        @apply flex-col
+    }
+    #content-modal div > p{
+        @apply text-sm gap-2
+    }
+    #content-modal div:first-of-type, #content-modal div:last-of-type{
+        @apply w-36 text-sm 
+    }
+}
+@media screen and (max-width: 678px) {
+    #grid{
+        @apply grid-cols-2
+    }
+    #modal h3{
+        @apply text-lg
+    }
+    #content-modal{
+        @apply gap-0
+    }
+    #content-modal{
+        @apply grid grid-cols-2 grid-rows-2 gap-4
+    }
+    #content-modal > div:nth-of-type(1){
+        @apply max-w-32 col-start-1 col-end-2
+    }
+    #content-modal > div:nth-of-type(2){
+        @apply w-full h-full col-start-1 col-end-3 p-0
+    }
+    #content-modal > div:nth-of-type(3){
+        @apply max-w-32 col-start-2 col-end-3 row-start-1 row-end-2
+    }
+    #content-modal > div:nth-of-type(2) div{
+        @apply w-full p-0
+    }
+}
+@media screen and (max-width: 465px) {
+    #grid{
+        @apply grid-cols-1
+    }
+    .cards{
+        @apply w-fit mx-auto
+    }
+}
